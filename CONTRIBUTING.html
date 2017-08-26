@@ -1,0 +1,71 @@
+<h1 id="Commit-message-format"><a href="#Commit-message-format" class="headerlink" title="Commit message format"></a>Commit message format</h1><p><em>Read this in other languages: <a href="CONTRIBUTING.md">English</a>, <a href="CONTRIBUTING.zh-cn.md">简体中文</a>.</em></p>
+<h2 id="1-Title-Header"><a href="#1-Title-Header" class="headerlink" title="1. Title (Header)"></a>1. Title (Header)</h2><p><strong>（1）type</strong></p>
+<p><code>type</code> is used to describe the commit class. It must be one of the following:</p>
+<blockquote>
+<ul>
+<li>feat: A new feature</li>
+<li>fix: A bug fix</li>
+<li>docs: Documentation only changes</li>
+<li>style: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)</li>
+<li>refactor: A code change that neither fixes a bug nor adds a feature</li>
+<li>test: Adding missing tests or correcting existing tests</li>
+<li>chore: Changes that affect the build system or external dependencies</li>
+</ul>
+</blockquote>
+<p><strong>（2）scope</strong></p>
+<p><code>scope</code> is used to describe the scope of the impact of commit, such as sns, lang, share.</p>
+<p><code>scope</code> is placed after <code>type</code> and within parenthesis (<code>()</code>).</p>
+<p><strong>（3）subject</strong></p>
+<p><code>subject</code> is a short description of the commit purpose, not more than 50 characters.</p>
+<blockquote>
+<ul>
+<li>starts with a verb and uses the first person present, such as change, not changed or changes</li>
+<li>The first letter is lowercase</li>
+<li>End without a period (.)</li>
+</ul>
+</blockquote>
+<hr>
+<p>See #119 <code>refactor(sns): simplify conditional display</code> for example.</p>
+<h2 id="2-Body"><a href="#2-Body" class="headerlink" title="2. Body"></a>2. Body</h2><p>Body is a detailed description that can be divided into multiple lines. The following is an example.</p>
+<blockquote>
+<p>More detailed explanatory text, if necessary. Wrap it around<br>72 characters or so.</p>
+<p>Further paragraphs come after blank lines.</p>
+<ul>
+<li>Bullet points are okay, too</li>
+<li>Use a hanging indent</li>
+</ul>
+</blockquote>
+<p>There are two points to note:</p>
+<p>(1) Use the first person present, such as <code>change</code> instead of <code>changed</code> or <code>changes</code>.</p>
+<p>(2) The motivation for the code change should be stated, as well as the comparison with the previous behavior.</p>
+<h2 id="3-Footer"><a href="#3-Footer" class="headerlink" title="3. Footer"></a>3. Footer</h2><p>The Footer section is used only in two cases.</p>
+<p><strong> (1) Incompatible changes </strong></p>
+<p>If the current code is incompatible with the previous version, the Footer section begins with <code>BREAKING CHANGE</code>, followed by a description of the change, along with the reason for the change and the migration method.</p>
+<pre><code>BREAKING CHANGE: isolate scope bindings definition has changed.
+
+To migrate the code follow the example below:
+
+Before:
+
+scope: {
+   myAttr: &apos;attribute&apos;,
+}
+
+After:
+
+scope: {
+   myAttr: &apos;@&apos;,
+}
+
+The removed `inject` wasn&apos;t generally useful for directives so there should be no code using it.
+</code></pre><p><strong> (2) Close Issue </strong></p>
+<p>If the current commit is for an issue, then you can close the issue in the Footer section.</p>
+<pre><code>Closes #234
+</code></pre><p>You can also close more than one issue at a time.</p>
+<pre><code>Closes #123, #245, #992.
+</code></pre><h2 id="4-Revert"><a href="#4-Revert" class="headerlink" title="4. Revert"></a>4. Revert</h2><p>There is also a special case that if the current commit is used to revoke a previous commit, it must begin with <code>revert:</code> followed by the commit header.</p>
+<pre><code>revert: feat(pencil): add &apos;graphiteWidth&apos; option
+
+This reverts commit 667ecc1654a317a13331b17617d973392f415f02.
+</code></pre><p>Body part of the format is fixed, must be written as <code>This reverts commit &lt;hash&gt;.</code>, Where <code>hash</code> is revoked SHA identifier of the commit.</p>
+<p>If the current commit is in the same release as the revoked commit, they will not appear in the Change log. If the two are in different releases, the current commit will appear in the Change log under the <code>Reverts</code> subtitle.</p>
